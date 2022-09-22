@@ -49,8 +49,10 @@ class ProductDetail extends StatelessWidget {
               child: SearchTextField(hintText: 'কাঙ্ক্ষিত পণ্যটি খুঁজুন'),
             ),
             const SizedBox(height: 20),
-            ImageBody(images: result.images),
-    
+            ImageBody(images: result.items),
+      // problem ta ekhane ekhane ki hobe  
+      // image ta search model thekew asche, flutter er image library theke asche concrte hocce
+      // fix korbo kivbe
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Text(

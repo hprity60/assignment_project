@@ -1,9 +1,10 @@
+import 'package:assignment_project/features/search/data/models/search_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../Utils/consts.dart';
 
 class ImageBody extends StatefulWidget {
-  final List<Image> images;
+  final List<Item> images;
 
   const ImageBody({super.key, required this.images});
 
@@ -50,7 +51,7 @@ class _ImageBodyState extends State<ImageBody> {
                     color: primaryColor,
                     borderRadius: BorderRadius.circular(15),
                     image: DecorationImage(
-                      image: AssetImage(widget.images[index].image.toString()),
+                      image: AssetImage(widget.images[index].image),
                     ),
                   ),
                 ),

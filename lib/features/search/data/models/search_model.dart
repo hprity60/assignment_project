@@ -81,9 +81,9 @@ class Products {
 class Result {
   // int id;
   //Brand brand;
-  String image;
-  // Charge charge;
-   List<Image> images;
+  String image; // item dile hobe??
+  // Charge charge;  /// Image change kore dibo??
+   List<Item> items; /// pageview e image gulu show korate chacci
   String slug;
   String productName;
   //String model;
@@ -116,7 +116,7 @@ class Result {
     //required this.brand,
     required this.image,
    // required this.charge,
-    required this.images,
+    required this.items,
     required this.slug,
     required this.productName,
    // required this.model,
@@ -150,7 +150,7 @@ class Result {
        // brand: Brand.fromJson(json["brand"]),
         image: json["image"] ?? '',
        // charge: Charge.fromJson(json["charge"]),
-        images: List<Image>.from(json["images"].map((x) => Image.fromJson(x))),
+        items: List<Item>.from(json["images"].map((x) => Item.fromJson(x))),
         slug: json["slug"],
         productName: json["product_name"] ?? '',
        // model: json["model"],
@@ -185,7 +185,7 @@ class Result {
        // "brand": brand.toJson(),
         "image": image,
       //  "charge": charge.toJson(),
-        "images": List<dynamic>.from(images.map((x) => x.toJson())),
+        "images": List<dynamic>.from(items.map((x) => x.toJson())),
         "slug": slug,
         "product_name": productName,
        // "model": model,
@@ -325,19 +325,19 @@ enum CreatedBy { QTECSL }
 
 final createdByValues = EnumValues({"qtecsl": CreatedBy.QTECSL});
 
-class Image {
+class Item {
   // int id;
   String image;
   bool isPrimary;
   //int product;
-  Image({
+  Item({
     //  required this.id,
     required this.image,
     required this.isPrimary,
     // required this.product,
   });
 
-  factory Image.fromJson(Map<String, dynamic> json) => Image(
+  factory Item.fromJson(Map<String, dynamic> json) => Item(
         //  id: json["id"],
         image: json["image"],
         isPrimary: json["is_primary"],
