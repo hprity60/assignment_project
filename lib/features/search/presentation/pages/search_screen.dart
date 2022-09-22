@@ -33,7 +33,9 @@ class _SearchScreenState extends State<SearchScreen> {
             child: Column(
               children: [
                 const SizedBox(height: 30),
-                const SearchTextField(hintText: 'কাঙ্ক্ষিত পণ্যটি খুঁজুন'),
+                const SearchTextField(
+                  
+                  hintText: 'কাঙ্ক্ষিত পণ্যটি খুঁজুন'),
                 const SizedBox(height: 30),
                 BlocBuilder<SearchBloc, SearchState>(builder: (context, state) {
                   print(state);

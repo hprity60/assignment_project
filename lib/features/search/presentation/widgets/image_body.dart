@@ -51,7 +51,7 @@ class _ImageBodyState extends State<ImageBody> {
                     color: primaryColor,
                     borderRadius: BorderRadius.circular(15),
                     image: DecorationImage(
-                      image: AssetImage(widget.images[index].image),
+                      image: NetworkImage(widget.images[index].image),
                     ),
                   ),
                 ),
