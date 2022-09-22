@@ -33,9 +33,7 @@ class _SearchScreenState extends State<SearchScreen> {
             child: Column(
               children: [
                 const SizedBox(height: 30),
-                const SearchTextField(
-                  
-                  hintText: 'কাঙ্ক্ষিত পণ্যটি খুঁজুন'),
+                const SearchTextField(hintText: 'কাঙ্ক্ষিত পণ্যটি খুঁজুন'),
                 const SizedBox(height: 30),
                 BlocBuilder<SearchBloc, SearchState>(builder: (context, state) {
                   print(state);
@@ -43,7 +41,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     return const Center(child: CircularProgressIndicator());
                   }
                   if (state is SearchStateLoaded) {
-                    return _buildgridview(state.result); 
+                    return _buildgridview(state.result);
                   }
                   return Container();
                 }),

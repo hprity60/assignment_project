@@ -1,6 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:assignment_project/Utils/consts.dart';
+import 'package:assignment_project/features/search/presentation/widgets/search_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../bloc/search_bloc.dart';
 
 class SearchTextField extends StatelessWidget {
   final String hintText;
@@ -29,10 +33,16 @@ class SearchTextField extends StatelessWidget {
           ),
           // fillColor: primaryColor,
           // filled: true,
-          suffixIcon: const Icon(
-            Icons.search,
-            size: 35,
-          ),
+          suffixIcon: IconButton(
+              color: Colors.red,
+              icon: const Icon(Icons.search),
+              onPressed: () {
+                showSearch(
+                    context: context,
+                    delegate: SearchBar(
+                      searchBloc: BlocProvider.of<SearchBloc>(context),
+                    ));
+              }),
         ),
       ),
     );
