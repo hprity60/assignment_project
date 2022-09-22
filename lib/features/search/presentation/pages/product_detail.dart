@@ -49,8 +49,8 @@ class ProductDetail extends StatelessWidget {
               child: SearchTextField(hintText: 'কাঙ্ক্ষিত পণ্যটি খুঁজুন'),
             ),
             const SizedBox(height: 20),
-            ImageBody(),
-            const SizedBox(height: 20),
+            ImageBody(images: result.images),
+    
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Text(
@@ -112,3 +112,5 @@ class ProductDetail extends StatelessWidget {
     );
   }
 }
+
+

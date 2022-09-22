@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import '../../../../Utils/consts.dart';
 
 class ImageBody extends StatefulWidget {
-   ImageBody({super.key});
+  final List<Image> images;
+
+  const ImageBody({super.key, required this.images});
 
   @override
   State<ImageBody> createState() => _ImageBodyState();
@@ -26,39 +28,39 @@ class _ImageBodyState extends State<ImageBody> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-            height: 300,
-            child: PageView.builder(
-                controller: _pageViewController,
-                itemCount: myImagesList.length,
-                physics: const BouncingScrollPhysics(
-                    parent: AlwaysScrollableScrollPhysics()),
-                onPageChanged: (index) {
-                  setState(() {
-                    _currentIndex = index;
-                  });
-                },
-                itemBuilder: (context, index) {
-                  final images = myImagesList[index];
-                  var scale = _currentIndex == index ? 1.0 : 0.8;
-                  return TweenAnimationBuilder(
-                      tween: Tween(begin: scale, end: scale),
-                      duration: const Duration(milliseconds: 350),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: primaryColor,
-                          borderRadius: BorderRadius.circular(15),
-                          image: DecorationImage(
-                            image: AssetImage(images),
-                          ),
-                        ),
-                      ),
-                      builder: (context, double value, child) {
-                        return Transform.scale(
-                          scale: value,
-                          child: child,
-                        );
-                      });
-                }),
-          );
+      height: 300,
+      child: PageView.builder(
+          controller: _pageViewController,
+          itemCount: widget.images.length,
+          physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics()),
+          onPageChanged: (index) {
+            setState(() {
+              _currentIndex = index;
+            });
+          },
+          itemBuilder: (context, index) {
+            //final images = myImagesList[index];
+            var scale = _currentIndex == index ? 1.0 : 0.8;
+            return TweenAnimationBuilder(
+                tween: Tween(begin: scale, end: scale),
+                duration: const Duration(milliseconds: 350),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: primaryColor,
+                    borderRadius: BorderRadius.circular(15),
+                    image: DecorationImage(
+                      image: AssetImage(widget.images[index].image.toString()),
+                    ),
+                  ),
+                ),
+                builder: (context, double value, child) {
+                  return Transform.scale(
+                    scale: value,
+                    child: child,
+                  );
+                });
+          }),
+    );
   }
 }

@@ -83,7 +83,7 @@ class Result {
   //Brand brand;
   String image;
   // Charge charge;
-  // List<Image> images;
+   List<Image> images;
   String slug;
   String productName;
   //String model;
@@ -116,7 +116,7 @@ class Result {
     //required this.brand,
     required this.image,
    // required this.charge,
-   // required this.images,
+    required this.images,
     required this.slug,
     required this.productName,
    // required this.model,
@@ -150,7 +150,7 @@ class Result {
        // brand: Brand.fromJson(json["brand"]),
         image: json["image"] ?? '',
        // charge: Charge.fromJson(json["charge"]),
-       // images: List<Image>.from(json["images"].map((x) => Image.fromJson(x))),
+        images: List<Image>.from(json["images"].map((x) => Image.fromJson(x))),
         slug: json["slug"],
         productName: json["product_name"] ?? '',
        // model: json["model"],
@@ -185,7 +185,7 @@ class Result {
        // "brand": brand.toJson(),
         "image": image,
       //  "charge": charge.toJson(),
-      //  "images": List<dynamic>.from(images.map((x) => x.toJson())),
+        "images": List<dynamic>.from(images.map((x) => x.toJson())),
         "slug": slug,
         "product_name": productName,
        // "model": model,
