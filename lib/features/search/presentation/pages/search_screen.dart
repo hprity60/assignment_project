@@ -35,9 +35,9 @@ class _SearchScreenState extends State<SearchScreen> {
               children: [
                 const SizedBox(height: 30),
                 SearchTextField(
-                    // onPressed: () {
-                    //   searchbloc.add(SearchEventSearch(searchController.text));
-                    // },
+                    onPressed: () {
+                      searchbloc.add(SearchEventSearch(searchController.text));
+                    },
                     controller: searchController,
                     hintText: 'কাঙ্ক্ষিত পণ্যটি খুঁজুন'),
                 SizedBox(

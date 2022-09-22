@@ -8,10 +8,12 @@ import 'package:assignment_project/features/search/presentation/widgets/search_b
 import '../bloc/search_bloc.dart';
 
 class SearchTextField extends StatelessWidget {
+  final void Function()? onPressed;
   final String hintText;
   final TextEditingController? controller;
   const SearchTextField({
     Key? key,
+    this.onPressed,
     required this.hintText,
     this.controller,
   }) : super(key: key);
@@ -41,13 +43,7 @@ class SearchTextField extends StatelessWidget {
           suffixIcon: IconButton(
               color: Colors.red,
               icon: const Icon(Icons.search),
-              onPressed: () {
-                showSearch(
-                    context: context,
-                    delegate: SearchBar(
-                      searchBloc: BlocProvider.of<SearchBloc>(context),
-                    ));
-              }),
+              onPressed: onPressed),
         ),
       ),
     );
