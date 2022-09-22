@@ -64,7 +64,7 @@ class ProductCard extends StatelessWidget {
               flex: 2,
               child: Padding(
                 padding: const EdgeInsets.only(top: 15),
-                child: Image.network(result.image),
+                child: Image.network(result.image!),
               ),
             ),
             const SizedBox(height: 10),
@@ -77,7 +77,7 @@ class ProductCard extends StatelessWidget {
                   Flexible(
                     flex: 1,
                     child: Text(
-                      result.productName,
+                      result.productName!,
                       style: kHeading14,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
@@ -125,7 +125,7 @@ class ProductCard extends StatelessWidget {
                                   const Spacer(),
                                   Text('লাভ ', style: kHeading8),
                                   Text(
-                                    result.amount, // '৳ 5.00'
+                                    result.amount!, // '৳ 5.00'
                                     style: kHeading12.copyWith(
                                         color: secondaryColor),
                                   ),

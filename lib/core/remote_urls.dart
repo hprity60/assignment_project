@@ -5,5 +5,6 @@ class RemoteUrls {
       '${baseUrl}product-details/{slug}/';
   static String search(String slug) =>
       '${baseUrl}product/search-suggestions/?limit=10&offset=10&search=$slug';
-
+static String searchProduct =
+      '${baseUrl}product/search-suggestions/?';
 }

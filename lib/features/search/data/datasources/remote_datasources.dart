@@ -5,27 +5,26 @@ import 'package:http/http.dart' as http;
 
 abstract class ApiRepositories {
   //Future<List<RepositoryResponseModel>> getRepoLists(int page);
-  Future<List<Result>> searchRepos(String slug);
+  Future<List<Result>> searchProduct(String slug);
 }
 
 class ApiRepositoriesIml extends ApiRepositories {
   @override
-  Future<List<Result>> searchRepos(String slug) async {
+  Future<List<Result>> searchProduct(String slug) async {
     var response = await http.get(Uri.parse(RemoteUrls.search(slug)), headers: {
       "Accept": "application/json",
+      "Content-Type": "application/json; charset=uft-8"
     });
     if (response.statusCode == 200) {
-      print(response.statusCode);
-      print(response.body);
-      print(response);
-      var data = json.decode(utf8.decode(response.bodyBytes));
+      var jsonResponse = response.body;
+      var decoded = json.decode(utf8.decode(response.bodyBytes));
+      List<Result> mapdatalist =
+          decoded["data"]["products"]["results"].map<Result>((b) => Result.fromJson(b)).toList();
 
-      List<Result> result = SearchModel.fromJson(data).data.products.results;
-      return result;
+      return mapdatalist;
     } else {
       print(Exception());
       throw Exception('Failed');
     }
   }
-
 }

@@ -1,373 +1,296 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-// To parse this JSON data, do
-//
-//     final productDetail = productDetailFromJson(jsonString);
-
-import 'dart:convert';
-
-import 'package:assignment_project/features/search/domain/entities/search.dart';
-
-SearchModel productDetailFromJson(String str) =>
-    SearchModel.fromJson(json.decode(str));
-
-String productDetailToJson(SearchModel data) => json.encode(data.toJson());
-
-class SearchModel {
-  final String status;
-  final Data data;
-  SearchModel({
-    required this.status,
-    required this.data,
-  });
-
-  factory SearchModel.fromJson(Map<String, dynamic> json) => SearchModel(
-        status: json["status"],
-        data: Data.fromJson(json["data"]),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "status": status,
-        "data": data.toJson(),
-      };
-}
-
-class Data {
-  List<dynamic> categories;
-  Products products;
-  Data({
-    required this.categories,
-    required this.products,
-  });
-
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
-        categories: List<dynamic>.from(json["categories"].map((x) => x)),
-        products: Products.fromJson(json["products"]),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "categories": List<dynamic>.from(categories.map((x) => x)),
-        "products": products.toJson(),
-      };
-}
-
-class Products {
-  //int count;
-  String next;
-  String previous;
-  List<Result> results;
-  Products({
-    // required this.count,
-    required this.next,
-    required this.previous,
-    required this.results,
-  });
-
-  factory Products.fromJson(Map<String, dynamic> json) => Products(
-        // count: json["count"],
-        next: json["next"],
-        previous: json["previous"],
-        results:
-            List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
-      );
-
-  Map<String, dynamic> toJson() => {
-        // "count": count,
-        "next": next,
-        "previous": previous,
-        "results": List<dynamic>.from(results.map((x) => x.toJson())),
-      };
-}
-
 class Result {
-  // int id;
-  //Brand brand;
-  String image; // item dile hobe??
-  // Charge charge;  /// Image change kore dibo??
-   List<Item> items; /// pageview e image gulu show korate chacci
-  String slug;
-  String productName;
-  //String model;
-  String amount;
-  String tag;
-  String description;
-  //String note;
-  //String embaddedVideoLink;
-  // int maximumOrder;
-  // int stock;
-  // bool isBackOrder;
-  // String warranty;
-  // bool preOrder;
-  // int productReview;
+  int? id;
+  Brand? brand;
+  String? image;
+  Charge? charge;
+  List<Images>? images;
+  String? slug;
+  String? productName;
+  String? model;
+  String? commissionType;
+  String? amount;
+  String? tag;
+  String? description;
+  String? note;
+  String? embaddedVideoLink;
+  int? maximumOrder;
+  int? stock;
+  bool? isBackOrder;
+  String? specification;
+  String? warranty;
+  bool? preOrder;
+  int? productReview;
+  bool? isSeller;
+  bool? isPhone;
+  bool? willShowEmi;
+ 
+  bool? isActive;
+  String? createdAt;
+  String? updatedAt;
+  
+  String? seller;
+ 
+  String? createdBy;
+ 
+  List<int>? category;
+ 
 
-  // bool isPhone;
-  // bool willShowEmi;
-  // dynamic badge;
-  // bool isActive;
-  // DateTime createdAt;
-  // DateTime updatedAt;
-  // dynamic language;
-  // dynamic combo;
-  // dynamic updatedBy;
-  // // List<int> category;
-  // List<dynamic> relatedProduct;
-  // List<dynamic> filterValue;
-  Result({
-    // required this.id,
-    //required this.brand,
-    required this.image,
-   // required this.charge,
-    required this.items,
-    required this.slug,
-    required this.productName,
-   // required this.model,
-    required this.amount,
-    required this.tag,
-    required this.description,
-    // required this.note,
-    // required this.embaddedVideoLink,
-    //  required this.maximumOrder,
-    // required this.stock,
-    // required this.isBackOrder,
-    // required this.warranty,
-    // required this.preOrder,
-    // required this.productReview,
-    // required this.isPhone,
-    // required this.willShowEmi,
-    // required this.badge,
-    // required this.isActive,
-    // required this.createdAt,
-    // required this.updatedAt,
-    // required this.language,
-    // required this.combo,
-    // required this.updatedBy,
-    // required this.category,
-    // required this.relatedProduct,
-    // required this.filterValue,
-  });
+  Result(
+      {this.id,
+      this.brand,
+      this.image,
+      this.charge,
+      this.images,
+      this.slug,
+      this.productName,
+      this.model,
+      this.commissionType,
+      this.amount,
+      this.tag,
+      this.description,
+      this.note,
+      this.embaddedVideoLink,
+      this.maximumOrder,
+      this.stock,
+      this.isBackOrder,
+      this.specification,
+      this.warranty,
+      this.preOrder,
+      this.productReview,
+      this.isSeller,
+      this.isPhone,
+      this.willShowEmi,
+      //this.badge,
+      this.isActive,
+      this.createdAt,
+      this.updatedAt,
+      //this.language,
+      this.seller,
+      //this.combo,
+      this.createdBy,
+      //this.updatedBy,
+      this.category,
+      //this.relatedProduct,
+      //this.filterValue
+      });
 
-  factory Result.fromJson(Map<String, dynamic> json) => Result(
-        // id: json["id"],
-       // brand: Brand.fromJson(json["brand"]),
-        image: json["image"] ?? '',
-       // charge: Charge.fromJson(json["charge"]),
-        items: List<Item>.from(json["images"].map((x) => Item.fromJson(x))),
-        slug: json["slug"],
-        productName: json["product_name"] ?? '',
-       // model: json["model"],
-        amount: json["amount"] ?? '',
-        tag: json["tag"],
-        description: json["description"] ?? '',
-       // note: json["note"],
-       // embaddedVideoLink: json["embadded_video_link"],
-        //  maximumOrder: json["maximum_order"],
-        // stock: json["stock"],
-        // isBackOrder: json["is_back_order"],
-        // warranty: json["warranty"],
-        // preOrder: json["pre_order"],
-        // productReview: json["product_review"],
-        // isPhone: json["is_phone"],
-        // willShowEmi: json["will_show_emi"],
-        // badge: json["badge"],
-        // isActive: json["is_active"],
-        // createdAt: DateTime.parse(json["created_at"]),
-        // updatedAt: DateTime.parse(json["updated_at"]),
-        // language: json["language"],
-        // combo: json["combo"],
-        // updatedBy: json["updated_by"],
-        // category: List<int>.from(json["category"].map((x) => x)),
-       // relatedProduct:
-        //    List<dynamic>.from(json["related_product"].map((x) => x)),
-       // filterValue: List<dynamic>.from(json["filter_value"].map((x) => x)),
-      );
+  Result.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    brand = json['brand'] != null ? Brand.fromJson(json['brand']) : null;
+    image = json['image'];
+    charge =
+        json['charge'] != null ? Charge.fromJson(json['charge']) : null;
+    if (json['images'] != null) {
+      images = <Images>[];
+      json['images'].forEach((v) {
+        images!.add(Images.fromJson(v));
+      });
+    }
+    slug = json['slug'];
+    productName = json['product_name'];
+    model = json['model'];
+    commissionType = json['commission_type'];
+    amount = json['amount'].toString();
+    tag = json['tag'];
+    description = json['description'];
+    note = json['note'];
+    embaddedVideoLink = json['embadded_video_link'];
+    maximumOrder = json['maximum_order'];
+    stock = json['stock'];
+    isBackOrder = json['is_back_order'];
+    specification = json['specification'];
+    warranty = json['warranty'];
+    preOrder = json['pre_order'];
+    productReview = json['product_review'];
+    isSeller = json['is_seller'];
+    isPhone = json['is_phone'];
+    willShowEmi = json['will_show_emi'];
+    //badge = json['badge'];
+    isActive = json['is_active'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+    //language = json['language'];
+    seller = json['seller'];
+    //combo = json['combo'];
+    createdBy = json['created_by'];
+   // updatedBy = json['updated_by'];
+    category = json['category'].cast<int>();
+    // if (json['related_product'] != null) {
+    //  // relatedProduct = <Null>[];
+    //   json['related_product'].forEach((v) {
+    //     relatedProduct!.add(Null.fromJson(v));
+    //   });
+    // }
+    // if (json['filter_value'] != null) {
+    //   filterValue = <Null>[];
+    //   json['filter_value'].forEach((v) {
+    //     filterValue!.add(Null.fromJson(v));
+    //   });
+    // }
+  }
 
-  Map<String, dynamic> toJson() => {
-        //  "id": id,
-       // "brand": brand.toJson(),
-        "image": image,
-      //  "charge": charge.toJson(),
-        "images": List<dynamic>.from(items.map((x) => x.toJson())),
-        "slug": slug,
-        "product_name": productName,
-       // "model": model,
-        "amount": amount,
-        "tag": tag,
-        "description": description,
-       // "note": note,
-       // "embadded_video_link": embaddedVideoLink,
-        // "maximum_order": maximumOrder,
-        // "stock": stock,
-        // "is_back_order": isBackOrder,
-        // "warranty": warranty,
-        // "pre_order": preOrder,
-        // "product_review": productReview,
-        // "is_phone": isPhone,
-        // "will_show_emi": willShowEmi,
-        // "badge": badge,
-        // "is_active": isActive,
-        // "created_at": createdAt.toIso8601String(),
-        // "updated_at": updatedAt.toIso8601String(),
-        // "language": language,
-        // "combo": combo,
-        // "updated_by": updatedBy,
-        // // "category": List<dynamic>.from(category.map((x) => x)),
-        // "related_product": List<dynamic>.from(relatedProduct.map((x) => x)),
-        // "filter_value": List<dynamic>.from(filterValue.map((x) => x)),
-      };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    if (brand != null) {
+      data['brand'] = brand!.toJson();
+    }
+    data['image'] = image;
+    if (charge != null) {
+      data['charge'] = charge!.toJson();
+    }
+    if (images != null) {
+      data['images'] = images!.map((v) => v.toJson()).toList();
+    }
+    data['slug'] = slug;
+    data['product_name'] = productName;
+    data['model'] = model;
+    data['commission_type'] = commissionType;
+    data['amount'] = amount;
+    data['tag'] = tag;
+    data['description'] = description;
+    data['note'] = note;
+    data['embadded_video_link'] = embaddedVideoLink;
+    data['maximum_order'] = maximumOrder;
+    data['stock'] = stock;
+    data['is_back_order'] = isBackOrder;
+    data['specification'] = specification;
+    data['warranty'] = warranty;
+    data['pre_order'] = preOrder;
+    data['product_review'] = productReview;
+    data['is_seller'] = isSeller;
+    data['is_phone'] = isPhone;
+    data['will_show_emi'] = willShowEmi;
+    //data['badge'] = badge;
+    data['is_active'] = isActive;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    //data['language'] = language;
+    data['seller'] = seller;
+   // data['combo'] = combo;
+    data['created_by'] = createdBy;
+   // data['updated_by'] = updatedBy;
+    data['category'] = category;
+   
+    return data;
+  }
 }
 
 class Brand {
-  Name name;
-  String image;
-  dynamic headerImage;
-  Slug slug;
-  Brand({
-    required this.name,
-    required this.image,
-    required this.headerImage,
-    required this.slug,
-  });
+  String? name;
+  String? image;
+  String? headerImage;
+  String? slug;
 
-  factory Brand.fromJson(Map<String, dynamic> json) => Brand(
-        name: nameValues.map[json["name"]]!,
-        image: json["image"],
-        headerImage: json["header_image"],
-        slug: slugValues.map[json["slug"]]!,
-      );
+  Brand({this.name, this.image, this.headerImage, this.slug});
 
-  Map<String, dynamic> toJson() => {
-        "name": nameValues.reverse[name],
-        "image": image,
-        "header_image": headerImage,
-        "slug": slugValues.reverse[slug],
-      };
+  Brand.fromJson(Map<String, dynamic> json) {
+    name = json['name'];
+    image = json['image'];
+    headerImage = json['header_image'];
+    slug = json['slug'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['image'] = image;
+    data['header_image'] = headerImage;
+    data['slug'] = slug;
+    return data;
+  }
 }
-
-enum Name { RICE }
-
-final nameValues = EnumValues({"Rice": Name.RICE});
-
-enum Slug { RICE }
-
-final slugValues = EnumValues({"rice": Slug.RICE});
 
 class Charge {
-  // int bookingPrice;
-  // int currentCharge;
-  dynamic discountCharge;
-  // int sellingPrice;
-  // int profit;
-  bool isEvent;
-  dynamic eventId;
-  bool highlight;
-  dynamic highlightId;
-  bool groupping;
-  dynamic grouppingId;
-  dynamic campaignSectionId;
-  bool campaignSection;
-  dynamic message;
-  Charge({
-    // required this.bookingPrice,
-    // required this.currentCharge,
-    required this.discountCharge,
-    // required this.sellingPrice,
-    // required this.profit,
-    required this.isEvent,
-    required this.eventId,
-    required this.highlight,
-    required this.highlightId,
-    required this.groupping,
-    required this.grouppingId,
-    required this.campaignSectionId,
-    required this.campaignSection,
-    required this.message,
-  });
+  String? bookingPrice;
+  String? currentCharge;
+  String? discountCharge;
+  String? sellingPrice;
+  String? profit;
+  bool? isEvent;
+  String? eventId;
+  bool? highlight;
+  String? highlightId;
+  bool? groupping;
+  String? grouppingId;
+  String? campaignSectionId;
+  bool? campaignSection;
+  String? message;
 
-  factory Charge.fromJson(Map<String, dynamic> json) => Charge(
-        // bookingPrice: json["booking_price"],
-        //  currentCharge: json["current_charge"],
-        discountCharge: json["discount_charge"],
-        // sellingPrice: json["selling_price"],
-        //  profit: json["profit"],
-        isEvent: json["is_event"],
-        eventId: json["event_id"],
-        highlight: json["highlight"],
-        highlightId: json["highlight_id"],
-        groupping: json["groupping"],
-        grouppingId: json["groupping_id"],
-        campaignSectionId: json["campaign_section_id"],
-        campaignSection: json["campaign_section"],
-        message: json["message"],
-      );
+  Charge(
+      {this.bookingPrice,
+      this.currentCharge,
+      this.discountCharge,
+      this.sellingPrice,
+      this.profit,
+      this.isEvent,
+      this.eventId,
+      this.highlight,
+      this.highlightId,
+      this.groupping,
+      this.grouppingId,
+      this.campaignSectionId,
+      this.campaignSection,
+      this.message});
 
-  Map<String, dynamic> toJson() => {
-        // "booking_price": bookingPrice,
-        // "current_charge": currentCharge,
-        "discount_charge": discountCharge,
-        // "selling_price": sellingPrice,
-        // "profit": profit,
-        "is_event": isEvent,
-        "event_id": eventId,
-        "highlight": highlight,
-        "highlight_id": highlightId,
-        "groupping": groupping,
-        "groupping_id": grouppingId,
-        "campaign_section_id": campaignSectionId,
-        "campaign_section": campaignSection,
-        "message": message,
-      };
+  Charge.fromJson(Map<String, dynamic> json) {
+    bookingPrice = json['booking_price'].toString();
+    currentCharge = json['current_charge'].toString();
+    discountCharge = json['discount_charge'].toString();
+    sellingPrice = json['selling_price'].toString();
+    profit = json['profit'].toString();
+    isEvent = json['is_event'];
+    eventId = json['event_id'];
+    highlight = json['highlight'];
+    highlightId = json['highlight_id'];
+    groupping = json['groupping'];
+    grouppingId = json['groupping_id'];
+    campaignSectionId = json['campaign_section_id'];
+    campaignSection = json['campaign_section'];
+    message = json['message'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['booking_price'] = bookingPrice;
+    data['current_charge'] = currentCharge;
+    data['discount_charge'] = discountCharge;
+    data['selling_price'] = sellingPrice;
+    data['profit'] = profit;
+    data['is_event'] = isEvent;
+    data['event_id'] = eventId;
+    data['highlight'] = highlight;
+    data['highlight_id'] = highlightId;
+    data['groupping'] = groupping;
+    data['groupping_id'] = grouppingId;
+    data['campaign_section_id'] = campaignSectionId;
+    data['campaign_section'] = campaignSection;
+    data['message'] = message;
+    return data;
+  }
 }
 
-enum CommissionType { PERCENT }
+class Images {
+  int? id;
+  String? image;
+  bool? isPrimary;
+  int? product;
 
-final commissionTypeValues = EnumValues({"Percent": CommissionType.PERCENT});
+  Images({this.id, this.image, this.isPrimary, this.product});
 
-enum CreatedBy { QTECSL }
+  Images.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    image = json['image'];
+    isPrimary = json['is_primary'];
+    product = json['product'];
+  }
 
-final createdByValues = EnumValues({"qtecsl": CreatedBy.QTECSL});
-
-class Item {
-  // int id;
-  String image;
-  bool isPrimary;
-  //int product;
-  Item({
-    //  required this.id,
-    required this.image,
-    required this.isPrimary,
-    // required this.product,
-  });
-
-  factory Item.fromJson(Map<String, dynamic> json) => Item(
-        //  id: json["id"],
-        image: json["image"],
-        isPrimary: json["is_primary"],
-        // product: json["product"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        // "id": id,
-        "image": image,
-        "is_primary": isPrimary,
-        // "product": product,
-      };
-}
-
-enum Seller { SUPPLY_LINE }
-
-final sellerValues = EnumValues({"SupplyLine": Seller.SUPPLY_LINE});
-
-enum Specification { EMPTY }
-
-final specificationValues = EnumValues({"<|>": Specification.EMPTY});
-
-class EnumValues<T> {
-  Map<String, T> map;
-  Map<T, String>? reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    reverseMap ??= map.map((k, v) => MapEntry(v, k));
-    return reverseMap!;
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['image'] = image;
+    data['is_primary'] = isPrimary;
+    data['product'] = product;
+    return data;
   }
 }

@@ -53,3 +53,4 @@ class SearchStateMoreLoaded extends SearchState {
   @override
   List<Object> get props => [result];
 }
+

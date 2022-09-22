@@ -26,7 +26,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
     /// erpor ui te. ui te jan
     try {
-      List<Result> result = await _apiRepository.searchRepos(event.slug);
+      List<Result> result = await _apiRepository.searchProduct(event.slug);
       emit(SearchStateLoaded(result: result));
     } catch (e) {
       print(e.toString());

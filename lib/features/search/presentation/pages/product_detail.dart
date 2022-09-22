@@ -49,14 +49,14 @@ class ProductDetail extends StatelessWidget {
               child: SearchTextField(hintText: 'কাঙ্ক্ষিত পণ্যটি খুঁজুন'),
             ),
             const SizedBox(height: 20),
-            ImageBody(images: result.items),
+            ImageBody(images: result.images!),
       // problem ta ekhane ekhane ki hobe  
       // image ta search model thekew asche, flutter er image library theke asche concrte hocce
       // fix korbo kivbe
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Text(
-                result.productName,
+                result.productName!,
                 // 'প্রিঞ্জেলস অনিওন চিপস ৪২ গ্রাম',
                 style: kHeading24,
               ),

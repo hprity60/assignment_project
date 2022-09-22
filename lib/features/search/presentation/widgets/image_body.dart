@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../../Utils/consts.dart';
 
 class ImageBody extends StatefulWidget {
-  final List<Item> images;
+  final List<Images> images;
 
   const ImageBody({super.key, required this.images});
 
@@ -51,7 +51,7 @@ class _ImageBodyState extends State<ImageBody> {
                     color: primaryColor,
                     borderRadius: BorderRadius.circular(15),
                     image: DecorationImage(
-                      image: NetworkImage(widget.images[index].image),
+                      image: NetworkImage(widget.images[index].image!),
                     ),
                   ),
                 ),

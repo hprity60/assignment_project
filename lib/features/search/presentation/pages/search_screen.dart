@@ -21,6 +21,7 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     final searchbloc = BlocProvider.of<SearchBloc>(context);
+    var searchController = TextEditingController();
     return Scaffold(
       backgroundColor: backgroundColor,
       body: SingleChildScrollView(
@@ -33,8 +34,28 @@ class _SearchScreenState extends State<SearchScreen> {
             child: Column(
               children: [
                 const SizedBox(height: 30),
-                const SearchTextField(hintText: 'কাঙ্ক্ষিত পণ্যটি খুঁজুন'),
+                SearchTextField(
+                    // onPressed: () {
+                    //   searchbloc.add(SearchEventSearch(searchController.text));
+                    // },
+                    controller: searchController,
+                    hintText: 'কাঙ্ক্ষিত পণ্যটি খুঁজুন'),
+                SizedBox(
+                  width: double.infinity,
+                  height: 50,
+                  child: TextButton(
+                    onPressed: () {
+                      BlocProvider.of<SearchBloc>(context).add(SearchEventSearch(searchController.text));
+                    },
+                    child: const Text(
+                      "Search",
+                      style: TextStyle(color: Colors.red, fontSize: 16),
+                    ),
+                  ),
+                ),
+                // searchbloc.add(SearchEventSearch(searchController.text))
                 const SizedBox(height: 30),
+
                 BlocBuilder<SearchBloc, SearchState>(builder: (context, state) {
                   print(state);
                   if (state is SearchStateLoading) {

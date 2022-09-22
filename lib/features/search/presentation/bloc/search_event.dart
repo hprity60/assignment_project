@@ -19,3 +19,7 @@ class SearchEventSearch extends SearchEvent {
 class SearchEventLoadMore extends SearchEvent {
   const SearchEventLoadMore();
 }
+
+class ResetSearch extends SearchEvent {
+  
+}
