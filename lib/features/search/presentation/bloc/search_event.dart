@@ -6,3 +6,16 @@ abstract class SearchEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class SearchEventSearch extends SearchEvent {
+  final String slug;
+  const SearchEventSearch(
+      this.slug);
+
+  @override
+  List<Object> get props => [slug];
+}
+
+class SearchEventLoadMore extends SearchEvent {
+  const SearchEventLoadMore();
+}

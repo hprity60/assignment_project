@@ -2,13 +2,16 @@ import 'dart:io';
 
 import 'package:assignment_project/Utils/consts.dart';
 import 'package:assignment_project/Utils/font_style_helper.dart';
-import 'package:assignment_project/features/product_detail/presentation/widgets/image_body.dart';
-import 'package:assignment_project/features/product_detail/presentation/widgets/price_card.dart';
+import 'package:assignment_project/features/search/data/models/search_model.dart';
 import 'package:assignment_project/features/search/presentation/widgets/search_text_field.dart';
 import 'package:flutter/material.dart';
 
+import '../widgets/image_body.dart';
+import '../widgets/price_card.dart';
+
 class ProductDetail extends StatelessWidget {
-  const ProductDetail({super.key});
+  const ProductDetail({super.key, required this.result});
+  final Result result;
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +54,8 @@ class ProductDetail extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Text(
-                'প্রিঞ্জেলস অনিওন চিপস ৪২ গ্রাম',
+                result.productName,
+                // 'প্রিঞ্জেলস অনিওন চিপস ৪২ গ্রাম',
                 style: kHeading24,
               ),
             ),

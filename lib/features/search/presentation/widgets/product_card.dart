@@ -1,24 +1,23 @@
 import 'package:assignment_project/Utils/consts.dart';
 import 'package:assignment_project/Utils/font_style_helper.dart';
 import 'package:assignment_project/Utils/k_images.dart';
-import 'package:assignment_project/features/product_detail/presentation/pages/product_detail.dart';
+import 'package:assignment_project/Utils/k_strings.dart';
+import 'package:assignment_project/features/search/data/models/search_model.dart'
+    as res;
 import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
+  final res.Result result;
   const ProductCard({
     Key? key,
+    required this.result,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) => const ProductDetail(),
-          ),
-        );
+        Navigator.pushNamed(context, detailScreen, arguments: result);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -41,7 +40,7 @@ class ProductCard extends StatelessWidget {
       alignment: AlignmentDirectional.bottomCenter,
       children: [
         Positioned(
-          bottom: -15,
+          bottom: -75,
           left: 0,
           right: 0,
           child: GestureDetector(
@@ -50,8 +49,8 @@ class ProductCard extends StatelessWidget {
                   scale: 0.5,
                   origin: const Offset(50.0, 50.0),
                   child: Container(
-                    height: 100.0,
-                    width: 100.0,
+                    height: 150.0,
+                    width: 150.0,
                     color: Colors.blue,
                   ),
                 );
@@ -65,7 +64,7 @@ class ProductCard extends StatelessWidget {
               flex: 2,
               child: Padding(
                 padding: const EdgeInsets.only(top: 15),
-                child: Image.asset(Kimages.productItemImage),
+                child: Image.network(result.image),
               ),
             ),
             const SizedBox(height: 10),
@@ -78,7 +77,7 @@ class ProductCard extends StatelessWidget {
                   Flexible(
                     flex: 1,
                     child: Text(
-                      "Lays Classic Family Chips\n",
+                      result.productName,
                       style: kHeading14,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
@@ -126,7 +125,7 @@ class ProductCard extends StatelessWidget {
                                   const Spacer(),
                                   Text('লাভ ', style: kHeading8),
                                   Text(
-                                    '৳ 5.00',
+                                    result.amount, // '৳ 5.00'
                                     style: kHeading12.copyWith(
                                         color: secondaryColor),
                                   ),
